@@ -17,27 +17,9 @@ class IndexController extends Controller
 
         $checks = Check::query()->orderBy("created_at", "DESC")->paginate(5);
 
-
-        $dates = [];
-
-        for ($i=0, $i<=6; $i++;) {
-            $dates = Carbon::now()->subDays($i)->format('Y-m-d');
-        }
-
-        $data = Check::whereIn('created_at', $dates)
-            ->groupBy('date')
-            ->orderBy('date', 'ASC')
-            ->get(array(
-                DB::raw('Date(created_at) as date'),
-                DB::raw('COUNT(*) as "count"')
-            ))
-            ->keyBy('date');
-
         return view('welcome', [
             "users" => $users,
             "checks" => $checks,
-            'dates' => $dates,
-            'data' => $data,
         ]);
     }
 
