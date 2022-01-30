@@ -15,7 +15,7 @@ class IndexController extends Controller
     {
         $users = User::query()->orderBy("created_at", "DESC")->paginate(5);
 
-        $checks = Check::query()->orderBy("created_at", "DESC")->paginate(5);
+        $checks = Check::query()->get()->all();
 
         return view('welcome', [
             "users" => $users,

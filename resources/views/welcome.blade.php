@@ -31,7 +31,11 @@
                                             <div class="text-sm leading-5 text-gray-900">{{ $check->code }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">Призовой</div>
+                                            @if($check->type == '1')
+                                                <div class="text-sm leading-5 text-gray-900">Призовой</div>
+                                            @else
+                                                <div class="text-sm leading-5 text-gray-900">Обычный</div>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="text-sm leading-5 text-gray-900">{{ $check->created_at->format('d.m.Y') }}</div>
