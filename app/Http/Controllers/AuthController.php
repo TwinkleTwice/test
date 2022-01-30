@@ -53,7 +53,7 @@ class AuthController extends Controller
 
         $check = Check::create([
             'image' => $data["image"],
-            'user_id' => auth()->id(),
+            'user_id' => $id,
             'code' => $random,
         ]);
 
