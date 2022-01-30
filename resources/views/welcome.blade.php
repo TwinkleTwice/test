@@ -14,36 +14,46 @@
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Ваш код</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Тип</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Время добавления</th>
+                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Статус</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white">
                         @foreach($checks as $check)
-                            @foreach($users as $user)
                                 <tr>
-                                    @if($user->id == $check->user_id)
+                                    @if($check->image)
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">{{ $user->name }}</div>
+                                            <div class="text-sm leading-5 text-gray-900">{{ $check->user->name }}</div>
                                         </td>
                                         <td>
                                             <img src="/storage/checks{{ $check->image }}" class="h-64 w-64" alt="">
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">{{ $check->code }}</div>
+                                            @if($check->type % 2 == 0)
+                                                <div class="text-sm leading-5 text-gray-900"></div>
+                                                @else
+                                                <div class="text-sm leading-5 text-gray-900">{{ $check->code }}</div>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            @if($check->type == '1')
-                                                <div class="text-sm leading-5 text-gray-900">Призовой</div>
-                                            @else
+                                            @if($check->type % 2 == 0)
                                                 <div class="text-sm leading-5 text-gray-900">Обычный</div>
+                                            @else
+                                                <div class="text-sm leading-5 text-gray-900">Призовой</div>
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="text-sm leading-5 text-gray-900">{{ $check->created_at->format('d.m.Y') }}</div>
                                         </td>
-                                    @endisset
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            @if($check->status == 1)
+                                                <div class="text-sm leading-5 text-gray-900">Принят</div>
+                                            @else
+                                                <div class="text-sm leading-5 text-gray-900">Отклонен</div>
+                                            @endif
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
-                        @endforeach
                         </tbody>
                     </table>
                     {{ $users->links() }}

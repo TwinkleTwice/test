@@ -19,7 +19,7 @@ class CreateChecksTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->text("image")->nullable();
             $table->boolean("type");
-            $table->text("code");
+            $table->text("code")->nullable();
             $table->boolean("status");
             $table->timestamps();
         });

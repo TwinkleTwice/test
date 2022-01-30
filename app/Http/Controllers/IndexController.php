@@ -15,11 +15,12 @@ class IndexController extends Controller
     {
         $users = User::query()->orderBy("created_at", "DESC")->paginate(5);
 
-        $checks = Check::query()->get()->all();
+        $checks = Check::query()->select()->whereBetween('created_at',
+                [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
 
         return view('welcome', [
-            "users" => $users,
-            "checks" => $checks,
+            'users' => $users,
+            'checks' => $checks,
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CheckFormRequest;
 use App\Models\Check;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -51,10 +52,13 @@ class AuthController extends Controller
             $data["image"] = $image;
         };
 
+        $counter = Carbon::now()->hour;
+
         $check = Check::create([
             'image' => $data["image"],
             'user_id' => $id,
-            'code' => $random,
+            'type' => $counter,
+            'code' => $random
         ]);
 
         return redirect(route('check_form'));
