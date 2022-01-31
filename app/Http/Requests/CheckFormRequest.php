@@ -25,6 +25,7 @@ class CheckFormRequest extends FormRequest
     {
         return [
             "image" => ["required", "image"],
+            "code" => [],
         ];
     }
 }

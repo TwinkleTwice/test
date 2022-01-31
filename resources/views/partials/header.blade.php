@@ -5,6 +5,10 @@
         <a href="{{ route("checks") }}" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Чеки</a>
 
         @auth("web")
+            <a href="{{ route("check_form") }}" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Загрузка чека</a>
+        @endauth
+
+        @auth("web")
             <a href="{{ route("home") }}" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Главная</a>
         @endauth
 

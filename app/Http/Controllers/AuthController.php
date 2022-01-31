@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -54,12 +55,20 @@ class AuthController extends Controller
 
         $counter = Carbon::now()->hour;
 
-        $check = Check::create([
-            'image' => $data["image"],
-            'user_id' => $id,
-            'type' => $counter,
-            'code' => $random
-        ]);
+        if ($counter % 2 == 0) {
+            $check = Check::create([
+                'image' => $data["image"],
+                'user_id' => $id,
+                'type' => $counter,
+            ]);
+        } else {
+            $check = Check::create([
+                'image' => $data["image"],
+                'user_id' => $id,
+                'type' => $counter,
+                'code' => $random
+            ]);
+        }
 
         return redirect(route('check_form'));
     }

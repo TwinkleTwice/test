@@ -28,11 +28,9 @@
                                             <img src="/storage/checks{{ $check->image }}" class="h-64 w-64" alt="">
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            @if($check->type % 2 == 0)
-                                                <div class="text-sm leading-5 text-gray-900"></div>
-                                                @else
+{{--                                            @if($check->type % 2 == 0)--}}
                                                 <div class="text-sm leading-5 text-gray-900">{{ $check->code }}</div>
-                                            @endif
+{{--                                            @endif--}}
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             @if($check->type % 2 == 0)
